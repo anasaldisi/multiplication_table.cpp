@@ -1,0 +1,50 @@
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+bool isDecimal(double number) {
+    return number != static_cast<int>(number);
+}
+
+void MultiplicationTable(double number, int limit) {
+    bool decimal = isDecimal(number);
+
+    cout << "Multiplication Table for "<<number<<endl;
+   
+    for (int i = 1; i <= limit; ++i) {
+        double result = number * i;
+
+        if (decimal)
+            cout << fixed << setprecision(2);
+        else
+            cout << fixed << setprecision(0);
+
+        cout << number << " x " << i << " = " << result << endl;
+    }
+
+    cout << "---------------------------\n";
+}
+
+int main() {
+    double number;
+    int limit;
+    char choice;
+
+    do {
+        cout << "\nEnter a number to generate its multiplication table: ";
+        cin >> number;
+
+        cout << "Enter the maximum multiplier (e.g. 10): ";
+        cin >> limit;
+
+        MultiplicationTable(number, limit);
+
+        cout << "Do you want to enter another number? (y/n): ";
+        cin >> choice;
+
+    } while (choice == 'y' || choice == 'Y');
+
+    cout << "Thank you for using the multiplication table generator!\n";
+
+    return 0;
+}
